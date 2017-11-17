@@ -12,9 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $admin_entities= DB::select("select * from admins");
+    $users_entities= DB::select("select * from users");
+    return view('welcome')
+        ->with('admins',$admin_entities)
+        ->with('users',$users_entities);
 });
+
+Route::get('logout', '\App\Http\Controllers\Auth\AuthController@logout');
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+
