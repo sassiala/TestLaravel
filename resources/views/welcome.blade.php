@@ -39,22 +39,15 @@
                                 {{ "User" }}
                             </td>
                             <td>
-                                @if ($user->permution)
-                                    {{ $user->permution }}
-                                @else
-                                    {{"null"}}
-                                @endif
-                            </td>
-                            <td>
                                 <ul>
                                     <li>
-                                        <a class="btn btn-xs btn-link" href="{{url("show/".$user->id)}}">
+                                        <a class="btn btn-xs btn-link" href="{{url("show/".$user->id."/user")}}">
                                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                                             show
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-xs btn-link" href="{{url("edit/".$user->id)}}">
+                                        <a class="btn btn-xs btn-link" href="{{url("edit/".$user->id."/user")}}">
                                             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                                             edit
                                         </a>
@@ -82,13 +75,13 @@
                             <td>
                                 <ul>
                                     <li>
-                                        <a class="btn btn-xs btn-link" href="{{url("show/".$admin->id)}}">
+                                        <a class="btn btn-xs btn-link" href="{{url("show/".$admin->id."/admin")}}">
                                             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                                             show
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-xs btn-link" href="{{url("show/".$admin->id)}}">
+                                        <a class="btn btn-xs btn-link" href="{{url("show/".$admin->id."/admin")}}">
                                             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                                             edit
                                         </a>
