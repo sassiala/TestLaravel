@@ -13,9 +13,7 @@
 
 Route::get('/', function () {
 
-    $admin_entities= DB::select("select * from admins");
     $users_entities= DB::select("select * from users");
-
     $tab=null;
     if($users_entities)
     {
@@ -42,7 +40,6 @@ Route::get('/', function () {
     }
 
     return view('welcome')
-        ->with('admins',$admin_entities)
         ->with('users',$users_entities)
         ->with('permution',$tab);
 });
@@ -53,7 +50,11 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/show/{id}', 'usersController@show');
+
+/*
 Route::get('/show/{id}/{role}', function ($id,$role) {
+
 
     //search in admin or user table with id parametre
     ///TODO

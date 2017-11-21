@@ -13,7 +13,7 @@ class CreatePermutionOfUserTable extends Migration
     public function up()
     {
         //
-        Schema::create('PermutionOfUser', function (Blueprint $table) {
+        Schema::create('permutionOfUser', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('permution_id')->unsigned();
@@ -36,5 +36,6 @@ class CreatePermutionOfUserTable extends Migration
     public function down()
     {
         //
+        Schema::drop('permutionOfUser');
     }
 }

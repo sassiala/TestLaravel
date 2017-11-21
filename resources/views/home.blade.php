@@ -1,17 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="row page-header">
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+        <h1 class="col-lg-1">
+            <a class="btn btn-primary btn-lg" href="#">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
+                    </span>
+            </a>
+        </h1>
+
     </div>
-</div>
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped" id="mydata">
+            <thead>
+            <tr class="bg-primary text-white">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Permution</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @if($users)
+                @foreach ($users as $user)
+                    <tr>
+                        <td>
+                            {{ $user->name }}
+                        </td>
+                        <td>
+                            {{ $user->email }}
+                        </td>
+                        <td>
+                            {{$user->ro}}
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a class="btn btn-xs btn-link" href="{{url("show/".$user->id."/user")}}">
+                                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                        show
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-xs btn-link" href="{{url("edit/".$user->id."/user")}}">
+                                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                        edit
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+
+            </tbody>
+        </table>
+    </div>
+@endsection
+
+@section('script_footer')
+    <script>
+        $('#mydata').dataTable();
+    </script>
 @endsection
