@@ -31,7 +31,7 @@ class HomeController extends Controller
         foreach ($users_entities as $user)
         {
             $permution_of_user= DB::select("select * from accessof");
-            //get all 
+            //get all
         }
         return view('home')
             ->with('users',$users_entities);

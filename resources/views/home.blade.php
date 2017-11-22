@@ -4,9 +4,8 @@
     <div class="row page-header">
 
         <h1 class="col-lg-1">
-            <a class="btn btn-primary btn-lg" href="#">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
-                    </span>
+            <a class="btn btn-primary btn-lg" href="{{url("add")}}">
+                Add new user
             </a>
         </h1>
 

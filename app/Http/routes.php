@@ -21,6 +21,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/add', 'UsersController@add_form');
+Route::post('/add', 'UsersController@add');
+
+
 Route::get('/show/{id}', 'usersController@show');
 
 /*
