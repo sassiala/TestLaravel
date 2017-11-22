@@ -77,6 +77,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a>{{ Auth::user()->role }}</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
