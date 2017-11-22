@@ -38,8 +38,8 @@ class usersController extends Controller
         $email=$request->input('email');
         $password = $request->input('password');
         $role = $request->input('role');
-        $permution = $request->input('data');
-        dd($name,$email,$password,$role,$permution[0].tag);
+        $permution = $request->input('permution');
+        dd($name,$email,$password,$role,$permution);
         return view('show');
     }
 }

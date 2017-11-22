@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('style_head')
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize/css/materialize.min.css"  media="screen,projection"/>
+
+@stop
+
 @section('content')
     {{"hello "}}
     <div class="container">
@@ -23,6 +32,10 @@
 
             <input class="btn-info" type="submit" value="Envoyer !">
 
+            <div id="permution" name="permution">
+
+            </div>
+
         </form>
     </div>
 
@@ -30,11 +43,19 @@
 @stop
 
 @section('script_footer')
+
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="css/materialize/js/materialize.min.js"></script>
+
+
     <script>
         $(function () {
             $('.chips').material_chip();
 
             var data= $('.chips').material_chip('data');
+            $('#permution').append(data);
         });
     </script>
 @stop
