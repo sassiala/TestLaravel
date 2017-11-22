@@ -36,7 +36,10 @@
                             {{ $user->email }}
                         </td>
                         <td>
-                            {{$user->ro}}
+                            {{$user->role}}
+                        </td>
+                        <td>
+                            {{'####'}}
                         </td>
                         <td>
                             <ul>

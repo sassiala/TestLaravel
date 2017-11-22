@@ -14,7 +14,7 @@ class CreatePermutionTable extends Migration
     {
         //
         Schema::create('permution', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+            $table->increments('id');
             $table->string('name');
             $table->timestamps();
         });
