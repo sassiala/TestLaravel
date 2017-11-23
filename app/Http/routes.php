@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+use App\User;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,8 +21,14 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/add', 'UsersController@add_form');
-Route::post('/add', 'UsersController@add');
+
+//select permution
+
+
+//wile add in Auth::user()->{Select * from permution where id }
+
+    Route::get('/add', 'UsersController@add_form');
+    Route::post('/add', 'UsersController@add');
 
 
 Route::get('/show/{id}', 'usersController@show');

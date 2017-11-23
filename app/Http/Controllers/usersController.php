@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\User;
 
 class usersController extends Controller
 {
@@ -25,6 +26,8 @@ class usersController extends Controller
      */
     public function add_form()
     {
+        dump(User::get_permution(1));
+        dump(User::as_Permution('add',1));
         return view('add');
     }
     /**
