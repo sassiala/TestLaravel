@@ -43,13 +43,13 @@
                         <td>
                             <ul>
                                 <li>
-                                    <a class="btn btn-xs btn-link" href="{{url("show/".$user->id."/user")}}">
+                                    <a class="btn btn-xs btn-link" href="{{url("show/".$user->id)}}">
                                         <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                                         show
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="btn btn-xs btn-link" href="{{url("edit/".$user->id."/user")}}">
+                                    <a class="btn btn-xs btn-link" href="{{url("edit/".$user->id)}}">
                                         <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
                                         edit
                                     </a>

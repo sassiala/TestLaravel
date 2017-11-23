@@ -5,12 +5,18 @@ use App\User;
 
 @extends('layouts.app')
 
+@section('meta')
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+@stop
+
 @section('style_head')
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize/css/materialize.min.css"  media="screen,projection"/>
+
 
 @stop
 
@@ -22,7 +28,9 @@ use App\User;
     @section('content')
     {{"hello "}}
     <div class="container">
-        <form method="POST" action="{!! url('add') !!}" accept-charset="UTF-8">
+        <form method="POST" action="{!! url('add') !!}" id="ajouter" accept-charset="UTF-8">
+
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             {!! csrf_field() !!}
             <label for="nom">Entrez votre nom : </label>
             <input name="name" type="text"  id="name">
@@ -48,6 +56,7 @@ use App\User;
 
         </form>
     </div>
+    <div class="btn-info" id="send">send</div>
 
 
 @stop
@@ -67,11 +76,25 @@ use App\User;
 
 
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.chips').material_chip();
         $(function () {
-            $('.chips').material_chip();
+            ///TODO : send data to controller
+            $('#ajouter').submit(function () {
 
-            var data= $('.chips').material_chip('data');
-            $('#permution').append(data);
+                //get data from chips form
+                var data = $('.chips').material_chip('data');
+                //here I have an array fill with data of chips
+                //if I will get the first one : data[0].tag
+                ///------------------------------
+
+                document.getElementById('permution').innerHTML = data;
+                //$.post('add', {permution: "ala"});
+            })
         });
     </script>
 @stop

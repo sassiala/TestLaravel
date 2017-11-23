@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
 
@@ -46,10 +47,15 @@ class usersController extends Controller
         $password = $request->input('password');
         $cryptPassword= Crypt::encrypt($password);
         $role = $request->input('role');
-
+       /*
+         if($request->ajax())
+        {
+            dd(Response::json($request->all()));
+        }
+dd("sorry not ajax");*/
 
         ///TODO : get Permution liste and set it in table accessof
-        /// 
+        ///
         DB::table('users')->
             insert
         ([
@@ -59,7 +65,15 @@ class usersController extends Controller
                 'role' => $role
             ]
         ]);
-        dd('yess');
         return view('show');
+    }
+
+
+    public function show($id)
+    {
+        $array=User::get($id);
+        return view('show')
+            ->with('user',$array['user'])
+            ->with('permutions',$array['permution']);
     }
 }

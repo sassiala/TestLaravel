@@ -65,4 +65,16 @@ class User extends Authenticatable
         }
         return $bool;
     }
+
+    public static function get($user_id)
+    {
+        $user=
+            DB::table('users')
+                ->select('*')
+                ->where('id','=',$user_id)
+                ->first();
+        $permution=self::get_permution($user_id);
+
+        return array('user'=>$user,'permution'=>$permution);
+    }
 }

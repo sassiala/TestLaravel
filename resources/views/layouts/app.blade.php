@@ -7,7 +7,7 @@
 
     <title>Laravel</title>
 
-
+@yield('meta');
 
     <!-- admin template -->
     <script src="js/jquery.js"></script>
