@@ -1,3 +1,8 @@
+<?php
+
+use App\User;
+?>
+
 @extends('layouts.app')
 
 @section('style_head')
@@ -9,7 +14,12 @@
 
 @stop
 
-@section('content')
+<!--if the current user has add permution , he access to add page
+        else
+        redirect to home page
+        -->
+@if( User::as_Permution('add',Auth::user()->id) )
+    @section('content')
     {{"hello "}}
     <div class="container">
         <form method="POST" action="{!! url('add') !!}" accept-charset="UTF-8">
@@ -21,14 +31,14 @@
             <label for="nom">Entrez votre password : </label>
             <input name="password" type="password" id="password">
 
-                <select name="role" >
-                    <option value="SUPER-ADMIN">SUPER-ADMIN</option>
-                    <option value="ADMIN">ADMIN</option>
-                    <option value="USER">USER</option>
-                </select>
+            <select name="role" >
+                <option value="SUPER-ADMIN">SUPER-ADMIN</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+            </select>
 
             <label for="nom">saisier les parmutions : </label>
-                <div class="chips" name="permution"></div>
+            <div class="chips" name="permution"></div>
 
             <input class="btn-info" type="submit" value="Envoyer !">
 
@@ -41,6 +51,12 @@
 
 
 @stop
+@else
+    <?php
+            ///TODO : redirect to page with messageb
+            redirect()->route('notif',['notif'=>'pisst']);
+    ?>
+@endif
 
 @section('script_footer')
 

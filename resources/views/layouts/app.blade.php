@@ -78,7 +78,6 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     @if (!Auth::guest())
-                        <li><a>{{ Auth::user()->role }}</a></li>
                     @endif
                 </ul>
 

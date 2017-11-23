@@ -10,25 +10,23 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-use App\User;
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')
+        ->withNotif('WELCOME');
 });
+
+Route::get('/notification/{notif}','notifController@notif')->name('notif');
 
 Route::get('logout', '\App\Http\Controllers\Auth\AuthController@logout');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
-
-//select permution
-
-
-//wile add in Auth::user()->{Select * from permution where id }
 
     Route::get('/add', 'UsersController@add_form');
     Route::post('/add', 'UsersController@add');
+
 
 
 Route::get('/show/{id}', 'usersController@show');

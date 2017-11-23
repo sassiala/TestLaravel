@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
+
+
 class usersController extends Controller
 {
     //
@@ -26,8 +30,8 @@ class usersController extends Controller
      */
     public function add_form()
     {
-        dump(User::get_permution(1));
-        dump(User::as_Permution('add',1));
+        //dump(User::get_permution(1));
+        //dump(User::as_Permution('add',1));
         return view('add');
     }
     /**
@@ -40,9 +44,19 @@ class usersController extends Controller
         $name = $request->input('name');
         $email=$request->input('email');
         $password = $request->input('password');
+        //$cryptPassword= Crypt::encryptString($password);
         $role = $request->input('role');
-        $permution = $request->input('permution');
-        dd($name,$email,$password,$role,$permution);
+
+        DB::table('users')->
+            insert
+        ([
+            ['name' => $name,
+                'email' => $email,
+                'password' => $password,
+                'role' => $role
+            ]
+        ]);
+        dd('yess');
         return view('show');
     }
 }
