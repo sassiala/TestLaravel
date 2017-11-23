@@ -44,15 +44,18 @@ class usersController extends Controller
         $name = $request->input('name');
         $email=$request->input('email');
         $password = $request->input('password');
-        //$cryptPassword= Crypt::encryptString($password);
+        $cryptPassword= Crypt::encrypt($password);
         $role = $request->input('role');
 
+
+        ///TODO : get Permution liste and set it in table accessof
+        /// 
         DB::table('users')->
             insert
         ([
             ['name' => $name,
                 'email' => $email,
-                'password' => $password,
+                'password' => $cryptPassword,
                 'role' => $role
             ]
         ]);
