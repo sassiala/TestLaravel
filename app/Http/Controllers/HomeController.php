@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,16 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users_entities= DB::select("select * from users");
-
-        //parcour users by users
-        foreach ($users_entities as $user)
-        {
-            $permution_of_user= DB::select("select * from accessof");
-            //get all
-        }
         return view('home')
-            ->with('users',$users_entities);
+            ->with('users',User::get_all())
+            ->with('permutions',User::get_all_permutions())
+            ;
     }
 
 }

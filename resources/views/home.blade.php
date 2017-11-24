@@ -38,7 +38,10 @@
                             {{$user->role}}
                         </td>
                         <td>
-                            {{'####'}}
+
+                            @foreach($permutions[$user->id] as $permution)
+                                <div class="btn-info">{{$permution->name}}</div>
+                            @endforeach
                         </td>
                         <td>
                             <ul>

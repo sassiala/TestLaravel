@@ -65,7 +65,8 @@ dd("sorry not ajax");*/
                 'role' => $role
             ]
         ]);
-        return view('show');
+        return view('home')
+            ->with('users',User::get_all());
     }
 
 

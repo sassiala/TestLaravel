@@ -25,7 +25,8 @@ use App\User;
         redirect to home page
         -->
 @if( User::as_Permution('add',Auth::user()->id) )
-    @section('content')
+
+@section('content')
     {{"hello "}}
     <div class="container">
         <form method="POST" action="{!! url('add') !!}" id="ajouter" accept-charset="UTF-8">

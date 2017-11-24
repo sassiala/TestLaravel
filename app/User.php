@@ -77,4 +77,29 @@ class User extends Authenticatable
 
         return array('user'=>$user,'permution'=>$permution);
     }
+
+    public static function get_all()
+    {
+        $users=DB::table('users')
+            ->select('*')
+            ->get();
+        return($users);
+    }
+
+    public static function get_all_permutions()
+    {
+        $users=self::get_all();
+        //i have listes of users
+
+        $array=array();
+        foreach ($users as $u)
+        {
+            $permution=User::get_permution($u->id);
+            $array[$u->id]=$permution;
+            //array_push($array[$u->id],$permution);
+        }
+        //dd($array[0][0]);
+
+        return($array);
+    }
 }
