@@ -95,7 +95,14 @@ class User extends Authenticatable
         foreach ($users as $u)
         {
             $permution=User::get_permution($u->id);
-            $array[$u->id]=$permution;
+            if($permution)
+            {
+                $array[$u->id]=$permution;
+            }
+            else
+                $array[$u->id]=null;
+            //dump($permution);
+            //dump($array);
             //array_push($array[$u->id],$permution);
         }
         //dd($array[0][0]);

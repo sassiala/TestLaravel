@@ -39,9 +39,13 @@
                         </td>
                         <td>
 
-                            @foreach($permutions[$user->id] as $permution)
-                                <div class="btn-info">{{$permution->name}}</div>
-                            @endforeach
+                            @if($permutions[$user->id])
+                                @foreach($permutions[$user->id] as $permution)
+                                    <div class="btn-info">{{$permution->name}}</div>
+                                @endforeach
+                            @else
+                                {{'nothing'}}
+                            @endif
                         </td>
                         <td>
                             <ul>
