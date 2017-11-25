@@ -39,7 +39,9 @@
                         </td>
                         <td>
 
-                            @if($permutions[$user->id])
+                            @if($user->role=='SUPER-ADMIN')
+                                <div class="btn-danger">ALL</div>
+                            @elseif($permutions[$user->id])
                                 @foreach($permutions[$user->id] as $permution)
                                     <div class="btn-info">{{$permution->name}}</div>
                                 @endforeach

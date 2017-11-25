@@ -26,6 +26,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /*
+     * get all permutions of user_id
+     */
     public static function get_permution($user_id)
     {
         //$user = DB::table('users')->where('name', 'John')->first();
@@ -51,6 +54,9 @@ class User extends Authenticatable
         return ($permutions);
     }
 
+    /*
+     * return true if user_id has permution_name
+     */
     public static function as_Permution($permution_name,$user_id)
     {
         $permutions=self::get_permution($user_id);
@@ -66,6 +72,9 @@ class User extends Authenticatable
         return $bool;
     }
 
+    /*
+     * get all fields of user_id
+     */
     public static function get($user_id)
     {
         $user=
@@ -78,6 +87,9 @@ class User extends Authenticatable
         return array('user'=>$user,'permution'=>$permution);
     }
 
+    /*
+     * return all users
+     */
     public static function get_all()
     {
         $users=DB::table('users')
@@ -86,6 +98,10 @@ class User extends Authenticatable
         return($users);
     }
 
+    /*
+     * return array contains all permutions of all user
+     * array[id_user] contains permutions of id_user
+     */
     public static function get_all_permutions()
     {
         $users=self::get_all();
@@ -108,5 +124,48 @@ class User extends Authenticatable
         //dd($array[0][0]);
 
         return($array);
+    }
+
+    /*
+     * return id of permution got in arguments
+     */
+    public static function get_permution_id($permution_name)
+    {
+        $permution_id=DB::table('permution')
+            ->select('id')
+            ->where('name','=',$permution_name)
+            ->first();
+        return($permution_id);
+    }
+
+    /*
+     * return bool true if permutions is not null
+     * process to affect the permutions got in parametre to user_id
+     */
+    public static function add_permution_to($user_id,$permutions)
+    {
+        //$permutions is an array
+        if($permutions)
+        {
+            foreach ($permutions as $p)
+            {
+                //$p has name of permution we need her id
+                $access_id=self::get_permution_id($p);
+                DB::table('accessof')->
+                insert
+                ([
+                    ['user_id' => $user_id,
+                        'access_id'=>$access_id
+                    ]
+                ]);
+            }
+            return(true);
+        }
+        else
+        {
+            return(false);
+        }
+
+
     }
 }

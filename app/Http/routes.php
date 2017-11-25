@@ -24,12 +24,14 @@ Route::auth();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-    Route::get('/add', 'UsersController@add_form');
-    Route::post('/add', 'UsersController@add');
+Route::get('/add', 'UsersController@add_form');
+Route::post('/add', 'UsersController@add');
+
+Route::get('/edit/{id}', 'UsersController@edit_form');
+Route::post('/edit/{id}', 'UsersController@edit');
 
 
-
-Route::get('/show/{id}', 'usersController@show');
+Route::get('/show/{id}', 'usersController@show')->name('show');
 
 /*
 Route::get('/show/{id}/{role}', function ($id,$role) {

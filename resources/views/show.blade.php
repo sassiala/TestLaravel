@@ -1,3 +1,8 @@
+<?php
+
+use App\User;
+?>
+
 @extends('layouts.app')
 
 
@@ -15,8 +20,108 @@
 
 
 @stop
+@if(Auth::user()->role=='SUPER-ADMIN')
+    @section('content')
 
-@section('content')
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped" id="mydata">
+            <tbody>
+            <tr>
+                <td>
+                    {{ 'name' }}
+                </td>
+                <td>
+                    {{ $user->name }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'Email' }}
+                </td>
+                <td>
+                    {{ $user->email }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'Permutions' }}
+                </td>
+                <td>
+                    @if($permutions)
+                        @foreach($permutions as $p)
+                            {{$p->name.' + '}}
+                        @endforeach
+                    @else
+                        {{'nothings'}}
+                    @endif
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="chips-initial"></div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+@endsection
+@elseif(Route::getCurrentRoute()->getParameter('id')==Auth::user()->id)
+    @section('content')
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped" id="mydata">
+            <tbody>
+            <tr>
+                <td>
+                    {{ 'name' }}
+                </td>
+                <td>
+                    {{ $user->name }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'Email' }}
+                </td>
+                <td>
+                    {{ $user->email }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ 'Permutions' }}
+                </td>
+                <td>
+                    @if($permutions)
+                        @foreach($permutions as $p)
+                            {{$p->name.' + '}}
+                        @endforeach
+                    @else
+                        {{'nothings'}}
+                    @endif
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="chips-initial"></div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+@endsection
+@else
+        @if( User::as_Permution('display',Auth::user()->id) )
+
+            @section('content')
 
 
     <div class="table-responsive">
@@ -43,9 +148,13 @@
                         {{ 'Permutions' }}
                     </td>
                     <td>
-                        @foreach($permutions as $p)
-                            {{$p->name.' + '}}
-                        @endforeach
+                        @if($permutions)
+                            @foreach($permutions as $p)
+                                {{$p->name.' + '}}
+                            @endforeach
+                        @else
+                            {{'nothings'}}
+                        @endif
 
                     </td>
                 </tr>
@@ -60,6 +169,14 @@
     </div>
 
 @endsection
+
+        @else
+            {{Route::getCurrentRoute()->getParameter('id')}}
+            <?php
+                return redirect()->route('show', ['id' => Auth::user()->id]);
+            ?>
+        @endif
+@endif
 
 @section('script_footer')
 
